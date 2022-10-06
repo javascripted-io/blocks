@@ -1,0 +1,61 @@
+{
+  "bugs": {
+    "url": "https://github.com/javascripted-io/blocks/issues"
+  },
+  "description": "UI component library",
+  "dependencies": {
+    "@javascripted/utils": "^0.0.4"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.0-alpha.35",
+    "@storybook/addon-interactions": "^7.0.0-alpha.35",
+    "@storybook/addon-links": "^7.0.0-alpha.35",
+    "@storybook/react": "^7.0.0-alpha.35",
+    "@storybook/react-vite": "^7.0.0-alpha.35",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.0-alpha.35",
+    "typescript": "^4.8.4",
+    "vitest": "^0.22.1"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/blocks.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/javascripted-io/blocks#readme",
+  "keywords": [
+    "blocks",
+    "javascript",
+    "component",
+    "components",
+    "library",
+    "typescript",
+    "ui"
+  ],
+  "license": "MIT",
+  "module": "./dist/blocks.js",
+  "name": "@javascripted/blocks",
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/javascripted-io/blocks.git"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest",
+    "types": "tsc --project tsconfig.test.json",
+    "storybook": "npx storybook dev -p 6006",
+    "build-storybook": "npx storybook build"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}
