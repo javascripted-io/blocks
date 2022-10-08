@@ -1,7 +1,11 @@
-import type { ButtonHTMLAttributes } from "react"
+import { ButtonHTMLAttributes, CSSProperties, useState } from "react"
 
-import { useTheme } from "../Theme"
 import type { Base, Color } from "../types"
+
+import { cssVar } from "../Theme"
+import useHovered from "../../hooks/useHovered"
+
+// Enums
 
 export enum Variant {
     Contained,
@@ -9,22 +13,42 @@ export enum Variant {
     Text
 }
 
-interface Props extends Base<ButtonHTMLAttributes<HTMLButtonElement>> {
+// Types
+
+export interface Props extends Base<ButtonHTMLAttributes<HTMLButtonElement>> {
     color?: Color
     variant?: Variant
 }
 
+export interface Theme extends Pick<CSSProperties, "backgroundColor" | "borderColor" | "borderStyle"> {
+    hoveredBackgroundColor: CSSProperties["backgroundColor"]
+}
+
+// Utils
+
+const css = (key: keyof Theme) => cssVar(`button-${key}`)
+
+const backgroundColor = (hovered: boolean, variant?: Variant) => {
+    if (hovered) return css("hoveredBackgroundColor")
+    if (variant === Variant.Text) return "transparent"
+    return css("backgroundColor")
+}
+
+// Component
+
 export default ({ color, style, variant, ...rest }: Props) => {
-    const { colors: { primary } } = useTheme()
+    const [element, setElement] = useState<HTMLButtonElement | null>(null)
+    const hovered = useHovered(element)
 
     return (
         <button
             {...rest}
+            ref={setElement}
             style={{
-                backgroundColor: variant === Variant.Text ? "transparent" : "white",
+                backgroundColor: backgroundColor(hovered, variant),
                 boxSizing: "border-box",
-                borderColor: primary,
-                borderStyle: "solid",
+                borderColor: css("borderColor"),
+                borderStyle: css("borderStyle"),
                 borderWidth: variant === Variant.Text ? 0 : 1,
                 cursor: "pointer",
                 minHeight: 36,
@@ -35,3 +59,4 @@ export default ({ color, style, variant, ...rest }: Props) => {
         />
     )
 }
+

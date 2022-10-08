@@ -1,3 +1,5 @@
+import type { Theme as ButtonTheme } from "../Button"
+
 interface Colors {
     background: string
     error: string
@@ -8,6 +10,7 @@ interface Colors {
 export type PartialTheme = { [key: string]: PartialTheme | string }
 
 export interface Theme {
+    button: ButtonTheme
     colors: Colors
 }
 
