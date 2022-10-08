@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from "react"
-
 interface Colors {
     background: string
     error: string
@@ -14,6 +12,5 @@ export interface Theme {
 }
 
 export interface ThemeContext {
-    set: Dispatch<SetStateAction<Theme>>
     theme: Theme
 }
